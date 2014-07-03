@@ -21,6 +21,19 @@ class Event
     * @ORM\Column(type="integer")
     */
     protected $id;
+    /**
+    * @ORM\Column(type="string")
+    */
+    
+    protected $name_of_event;
+    public function setName_of_event($value)
+        {
+            $this->name_of_event = $value;
+        }
+    public function getId()
+    {
+        return $this->id;
+    }
     // ...
 
     public function __construct() {
