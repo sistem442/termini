@@ -29,11 +29,8 @@ class IndexController extends AbstractActionController
             $event->setName_of_event($this->getRequest()->getPost('name_of_event'));
             $this->getObjectManager()->persist($event);
             $this->getObjectManager()->flush();
-            echo 'new id: '.$event->getId();
-            die;
             return $this->redirect()->toRoute('home');
         }
-        echo'aaa';
         return new ViewModel();
     }
     protected function getObjectManager()

@@ -48,6 +48,10 @@ class Event
     {
         return $this->id;
     }
+    public function getName_of_event()
+    {
+        return $this->name_of_event;
+    }
     // ...
 
     public function __construct() {
