@@ -5,7 +5,7 @@
                 <h3>Users</h3>
             </div>
             <div>
-                <a href="<?php echo $this->url('application/default', array('controller' => 'Index', 'action' => 'add'));?>">Add Event</a>
+                <a href="<?php echo $this->url('application/default', array('controller' => 'Index', 'action' => 'addEvent'));?>">Add Event</a>
 
                 <?php if (isset($events)) : ?>
                 <table>

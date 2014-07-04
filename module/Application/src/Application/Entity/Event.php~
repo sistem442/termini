@@ -44,26 +44,6 @@ class Event
         {
             $this->name = $value;
         }
-	public function setDate($value)
-        {
-            $this->date = $value;
-        }
-	public function setLocation($value)
-        {
-            $this->location = $value;
-        }
-	public function setTime($value)
-        {
-            $this->time = $value;
-        }
-	public function setRemark($value)
-        {
-            $this->remark = $value;
-        }
-	public function setRedaction($value)
-        {
-            $this->redaction = $value;
-        }
     public function getId()
     {
         return $this->id;

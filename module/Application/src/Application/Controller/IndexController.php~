@@ -36,8 +36,7 @@ class IndexController extends AbstractActionController
 			$date = new \DateTime($this->getRequest()->getPost('date'));
 			$event->setDate($date);
 			$event->setLocation($this->getRequest()->getPost('location'));
-			$time = new \DateTime($this->getRequest()->getPost('time'));
-			$event->setTime($time);
+			$event->setTime($this->getRequest()->getPost('time'));
 			$event->setRemark($this->getRequest()->getPost('remark'));
 			$event->setRedaction($this->getRequest()->getPost('redaction'));
 			echo 'name: '.$this->getRequest()->getPost('name').'</br>';
