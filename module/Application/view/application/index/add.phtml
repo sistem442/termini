@@ -1,10 +1,11 @@
 <?php
+echo '<h1>Upiši novi dokument</h1>';
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url('application/default', array('controller' => 'Index', 'action' => 'create'))); 
 
-$title = 'Add new Event';
-$this->headTitle($title);
-?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
-<form method="post">
-  full name: <input type="text" name="name_of_event"><br>
-  <input type="submit" value="Submit">
-</form>
+$form->setAttribute('method', 'post');
+
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();

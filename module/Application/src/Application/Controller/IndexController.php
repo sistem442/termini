@@ -13,6 +13,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Entity\Event;
 
+use Application\Form\EventFilter;
+use Application\Form\EventForm;
+
 class IndexController extends AbstractActionController
 {
     protected $_objectManager;
@@ -31,7 +34,8 @@ class IndexController extends AbstractActionController
             $this->getObjectManager()->flush();
             return $this->redirect()->toRoute('home');
         }
-        return new ViewModel();
+        $form = new EventForm();
+		return new ViewModel(array('form' => $form));
     }
     protected function getObjectManager()
     {
