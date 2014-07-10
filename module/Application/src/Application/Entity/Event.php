@@ -68,54 +68,33 @@ class Event
     {
         return $this->id;
     }
-    public function getName_of_event()
+    public function getDate()
+    {
+        return $this->date;
+    }
+    public function getLocation()
+    {
+        return $this->location;
+    }
+    public function getName()
     {
         return $this->name;
+    }
+    public function getTime()
+    {
+        return $this->time;
+    }
+    public function getRemark()
+    {
+        return $this->remark;
+    }
+    public function getRedaction()
+    {
+        return $this->redaction;
     }
     // ...
 
     public function __construct() {
         $this->events = new \Doctrine\Common\Collections\ArrayCollection();
     }
-}
-
-/** @ORM\Entity */
-class Employee
-{
-    /**
-    * @ORM\Id
-    * @ORM\GeneratedValue(strategy="AUTO")
-    * @ORM\Column(type="integer")
-    */
-    protected $id;
-    /**
-    * @ORM\Column(type="string")
-    * @ORM\Column(length=30)
-    */
-    protected $name;
-}
-
-/** @ORM\Entity */
-class Work_schedule
-{
-    /**
-    * @ORM\Id
-    * @ORM\GeneratedValue(strategy="AUTO")
-    * @ORM\Column(type="integer")
-    */
-    protected $id;
-    /**
-     * @ORM\ManyToOne(targetEntity="Work_schedule")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
-     */
-    private $event;
-    /**
-     * @ORM\ManyToOne(targetEntity="Work_schedule")
-     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
-     */
-    private $employee;
-    /**
-    * @ORM\Column(type="time")
-    */
-    protected $emp_start_time;
 }
