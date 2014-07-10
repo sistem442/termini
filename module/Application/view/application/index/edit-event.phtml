@@ -1,0 +1,16 @@
+<?php 
+$title = 'Edit Event';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<form method="post">
+  <input type="text" name="name" value="<?php echo $event->getName(); ?>"> Ime događaja<br><br>
+  <input type="text" name="location" value="<?php echo $event->getLocation(); ?>"> Lokacija<br><br>
+  <input type="text" name="redaction" value="<?php echo $event->getRedaction(); ?>"> Redakcija<br><br>
+  <input type="date" name="date" value="<?php echo $event->GetDate()->format('Y-m-d'); ?>"> Datum<br><br> 
+  <input type="time" name="time" value="<?php echo $event->getTime()->format('H:i:s'); ?>"> Vreme<br><br> 
+  Napomena</br></br>
+  <textarea cols=50 rows=10 name="remark" value="<?php echo $event->getRemark(); ?>"></textarea><br><br>
+  
+  <input type="submit" value="Izmeni">
+</form>

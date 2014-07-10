@@ -1,26 +1,26 @@
 <div>
-    <h3>Događaji</h3>
+    <h3>Prikaz svih događaja od prvog u sadašnjem mesecu</h3>
 </div>
 <div>
-    <a href="<?php echo $this->url('application/default', array('controller' => 'Index', 'action' => 'add'));?>">Add Event</a>
+    <a href="<?php echo $this->url('application/default', array('controller' => 'Index', 'action' => 'addEvent'));?>">Dodaj događaj</a>
 
     <?php if (isset($events)) : ?>
     <table>
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Ime dogadjaja</th>
+            <th>Program</th>
+            <th>Ime događaja</th>
             <th></th>
         </tr>
         </thead>
     <?php foreach($events as $event): ?>
         <tbody>
         <tr>
-            <td><?php echo $event->getId(); ?></td>
-            <td><?php echo $event->getName(); ?></td>
+            <td style='padding: 5px'><?php echo $event->getRedaction(); ?></td>
+            <td style='padding: 5px'><?php echo $event->getName(); ?></td>
             <td>
-                <a href="<?php echo $this->url('application/default', array('action'=>'edit', 'id' => $event->getId()));?>">Edit</a> |
-                <a href="<?php echo $this->url('application/default', array('action'=>'delete', 'id' => $event->getId()));?>">Delete</a>
+                <a href="<?php echo $this->url('application/default', array('controller' => 'Index','action'=>'EditEvent', 'id' => $event->getId()));?>">Izmeni</a> |
+                <a href="<?php echo $this->url('application/default', array('controller' => 'Index','action'=>'DeleteEvent', 'id' => $event->getId()));?>">Obriši</a>
             </td>
         </tr>
         </tbody>

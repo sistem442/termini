@@ -39,8 +39,12 @@ class IndexController extends AbstractActionController
     protected $_objectManager;
     public function indexAction()
     {
-         $events = $this->getObjectManager()->getRepository('\Application\Entity\Event')->findAll();
-
+    $current_month = '2014-06-01';//date('Y-m').'-01'; 
+        
+    $events = $this->getObjectManager()
+    ->createQuery('SELECT e FROM \Application\Entity\Event e WHERE e.date >= '.$current_month.'ORDER BY e.redaction')
+    ->getResult();
+    
         return new ViewModel(array('events' => $events));
     }
     
@@ -49,35 +53,43 @@ class IndexController extends AbstractActionController
         if ($this->request->isPost()) {
 
 			$event = new Event();
-			$employee = new Employee();
-			$employee->setName('qwerty');
-			
-			
-            $event->setName($this->getRequest()->getPost('name'));
 			$date = new \DateTime($this->getRequest()->getPost('date'));
 			$event->setDate($date);
 			$event->setLocation($this->getRequest()->getPost('location'));
 			$time = new \DateTime($this->getRequest()->getPost('time'));
 			$event->setTime($time);
 			$event->setRemark($this->getRequest()->getPost('remark'));
-			$event->setRedaction($this->getRequest()->getPost('redaction'));
-			
-			/* for testing
-			echo 'name: '.$this->getRequest()->getPost('name').'</br>';
-			echo 'date: '.($this->getRequest()->getPost('date')).'</br>';
-			echo 'locaton: '.$this->getRequest()->getPost('location').'</br>';
-			echo 'tie: '.$this->getRequest()->getPost('time').'</br>';
-			echo 'remark: '.$this->getRequest()->getPost('remark').'</br>';
-			echo 'redactin: '.$this->getRequest()->getPost('redaction').'</br>';
-			*/
-
+			$event->setRedaction($this->getRequest()->getPost('redaction'));							
+     
 			$this->getObjectManager()->persist($event);
-			$this->getObjectManager()->persist($employee);
-            $this->getObjectManager()->flush();
+			$this->getObjectManager()->flush();
             return $this->redirect()->toRoute('home');
         }
         $form = new EventForm();
 		return new ViewModel(array('form' => $form));
+    }
+    
+    public function editEventAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        $event = $this->getObjectManager()->find('\Application\Entity\Event', $id);
+        
+        if ($this->request->isPost()) {
+            $event->setName($this->getRequest()->getPost('name'));
+            $date = new \DateTime($this->getRequest()->getPost('date'));
+            $event->setDate($date);
+            $event->setLocation($this->getRequest()->getPost('location'));
+            $time = new \DateTime($this->getRequest()->getPost('time'));
+            $event->setTime($time);
+            $event->setRemark($this->getRequest()->getPost('remark'));
+            $event->setRedaction($this->getRequest()->getPost('redaction'));
+      
+            $this->getObjectManager()->persist($event);
+            $this->getObjectManager()->flush();
+            return $this->redirect()->toRoute('home');
+        }
+        $form = new EventForm();
+        return new ViewModel(array('event' => $event));
     }
     
     public function GetAddEmployeeAction()
